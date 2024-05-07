@@ -18,6 +18,17 @@ impl DatabaseSettings {
             self.database_name
         )
     }
+
+    // still connects to a postgres instance, from which we can create a databse on the fly
+    pub fn connection_string_without_db(&self) -> String {
+        format!(
+            "postgres://{}:{}@{}:{}",
+            self.username,
+            self.password,
+            self.host,
+            self.port,
+        )
+    }
 }
 
 #[derive(serde::Deserialize)]
